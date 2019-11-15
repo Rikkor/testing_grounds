@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eric Brich - Ponder 10</title>
+    <style>
+        th, td{border:1px solid black;}
+    </style>
+  </head>
+  <body onload="loadDoc('usa.txt',popUSA)">
+    <h2>Ponder 10: Cities and Students</h2>
+
+    <div>
+      <button type="button" onclick="loadDoc('usa.txt',popUSA)">USA</button>
+      <button type="button" onclick="loadDoc('mexico.txt',popUSA)">Mexico</button>
+      <button type="button" onclick="loadDoc('russia.txt',popUSA)">Russia</button>
+      <button type="button" onclick="loadDoc('canada.txt',popUSA)">Canada</button>
+      <div id="population"></div>
+      <br/>
+    </div>
+    <div>
+      <input type="text" id="prob2" size="50" value="json.txt" />
+      <button type="button" onclick="loadDoc(getElementById('prob2').value,prob2)">Load Json</button>
+      <br/>
+      <br/>
+      <div id="prob2result"></div>
+    </div>
+
+    <script>
+      function loadDoc(url, cFunction) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            cFunction(this);
+          }
+        };
+        
+        xhttp.open("GET", url, true);
+        xhttp.send();
+      }
+
+      function popUSA(xhttp) {
+        document.getElementById("population").innerHTML = xhttp.responseText;
+      }
+
+      function prob2(xhttp) {
+        var arr = JSON.parse(xhttp.responseText);
+        var i;
+        var out = "<table>" +
+          "<tr><th>" +
+          "First Name" +
+          "</th><th>" +
+          "Last Name" + 
+          "</th><th>" +
+          "Major" +
+          "</th><th>" +
+          "GPA" + 
+          "</th><th>" +
+          "City" +
+          "</th><th>" +
+          "State" + 
+          "</th><th>" +
+          "Zip" +
+          "</th></tr>";
+
+        for(i=0; i < arr.students.length; i++) {
+          out += "<tr><td>" +
+          arr.students[i].first +
+          "</td><td>" +
+          arr.students[i].last +
+          "</td><td>" +
+          arr.students[i].major +
+          "</td><td>" +
+          arr.students[i].gpa +
+          "</td><td>" +
+          arr.students[i].address.city +
+          "</td><td>" +
+          arr.students[i].address.state +
+          "</td><td>" +
+          arr.students[i].address.zip +
+          "</td></tr>";
+        }
+        out += "</table>";
+
+        document.getElementById("prob2result").innerHTML = out;
+      }
+
+    </script>
+
+  </body>
+</html>
