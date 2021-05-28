@@ -1,6 +1,6 @@
 { "students" :
   [
-    { "first" : "Taylorr",
+    { "first" : "Taylor",
       "last"  : "Swift",
       "address" : { "city" : "Nashville", "state" : "TN", "zip" : "80134" },
       "major" : "Music",
