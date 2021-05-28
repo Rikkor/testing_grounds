@@ -6,7 +6,7 @@
       "major" : "Computer Science",
       "gpa"   : "3.5"
     },
-    { "first" : "Susann",
+    { "first" : "Susan",
       "last"  : "Smith",
       "address" : { "city" : "Idaho Falls", "state" : "ID", "zip" : "83234" },
       "major" : "Computer Engineering",
